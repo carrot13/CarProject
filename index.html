@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Car Model Information</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/icons/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/vendor/jquery/carquery.0.3.4.js"></script>
+    <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!--for online use-->
+    <!--<script src="js/vendor/jquery/carquery.0.3.4.js"></script>-->
+   
+
+
+</head>
+<body>
+
+<div class="home-page">
+
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-default">
+<div class="logo">
+<h1 class="logo-title">CarQuery</h1>
+<h2 class="logo-tagline">The Vehicle Data API</h2>
+</div>
+                        
+                </nav>
+            </div>
+        </header>
+
+
+        <div class="container">
+
+
+            <div class="row" style="margin-top:30px;">
+
+                <div class="col-sm-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Car Model Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="select-mode">
+                                             <fieldset>Select a Model to Retrieve Data:<p></p>
+                                               <div style="overflow-x:auto;">
+                                              
+										        <center><input type="button" id="cq-search-btn" value="Search CarQuery" /></center>
+										        <hr/>
+										        Keyword: <input id="cq-search-input" type="text" />
+										        <hr/>
+										        Year Range: <select id="cq-min-year"></select> to <select id="cq-max-year"></select>
+										        <br/><hr/>
+										        Engine Torque (lb-ft): <input type="text" id="cq-min-torque" style="width:30px" /> to <input type="text" id="cq-max-torque" style="width:30px" />
+										        <br/><hr/>
+										        Engine Fuel Type: <select id="cq-fuel-type"></select>
+										        <br/><hr/>
+										        Top Speed (mph): <input type="text" id="cq-min-top-speed" style="width:30px" /> to <input type="text" id="cq-max-top-speed" style="width:30px" />
+										        <br/><hr/>
+										        Drivetrain: <select id="cq-drive"></select>
+										        <br/><hr/>
+										        Seats: <select id="cq-seats"></select>
+										        <br/><hr/>
+										        Doors: <select id="cq-doors"></select>
+										        <br/><hr/>
+										        Weight (lbs): <input type="text" id="cq-min-weight" style="width:30px" /> to <input type="text" id="cq-max-weight" style="width:30px" />
+										        </br>
+										         <div id="cq-search-results">Search Results:</div>
+										        </br>
+										       </fieldset>
+										   </div>
+                                              
+
+                                              
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   <div class="col-sm-12">
+                                       <label for="comment">Comment:</label>
+                                       <textarea class="form-control" rows="3" id="comment"></textarea>
+                                   </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="height:55px;">
+                            <button type="button" onclick="addPublication()" class="btn btn-primary pull-right publish"><span class="glyphicon glyphicon-globe"></span> Publish</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Favourite models</h3>
+                            <div class="container-small">
+    <div class="well well-sm">
+        <strong>Display</strong>
+        <div class="btn-group" style="width: 250">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+                        </div>
+
+                        <ul id="statuses" class="row list-group" style="min-height:241px;">
+
+                            <li class="list-group-item">
+                                <div class="row">
+                                <div class="col-sm-2 col-xs-3">
+                <img src="assets/img/icons/car3.png" class="thumbnail img-responsive">
+            </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="label label-success"><span class="current-temp">Query Model</span> </span>
+                                        <h4>BMW</h4>
+                                        <p>Year of manufacture 2016. One of the most elegant cars ever. </p>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3">
+                                        <button type="button" class="btn btn-danger pull-right remove-post"><span class="glyphicon glyphicon-remove"></span><span class="hidden-xs"> Delete</span></button>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="row">
+                                <div class="col-sm-2 col-xs-3">
+                <img src="assets/img/icons/car2.png" class="thumbnail img-responsive">
+            </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="label label-success"><span class="current-temp">Query Model</span> </span>
+                                        <h4>Mercedes Benz</h4>
+                                        <p>Year of manufacture 2015. Turbo Diesel motor. Very good and stable car. </p>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3">
+                                        <button type="button" class="btn btn-danger pull-right remove-post"><span class="glyphicon glyphicon-remove"></span><span class="hidden-xs"> Delete</span></button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                <div class="col-sm-2 col-xs-3">
+                <img src="assets/img/icons/car1.png" class="thumbnail img-responsive">
+            </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="label label-success"><span class="current-temp">Query Model</span></span>
+                                        <h4>Opel</h4>
+                                        <p>Recent years GM and opel have dramaticaly encreased the quality of their cars. </p>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3">
+                                        <button type="button" class="btn btn-danger pull-right remove-post"><span class="glyphicon glyphicon-remove"></span><span class="hidden-xs"> Delete</span></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+</div>
+    <li id="temp" class="list-group-item" style="display:none">
+        <div class="row">
+            <div class="col-sm-2 col-xs-3">
+                <img src="assets/img/icons/car.png" class="thumbnail img-responsive">
+            </div>
+            <div class="col-sm-7 col-xs-6">
+                <span class="label label-success"><span class="current-temp">Query Model</span> </span>
+                <h4>Fiat</h4>
+                <p>Test car text to be changed. </p>
+            </div>
+            <div class="col-sm-3 col-xs-3">
+                <button onclick="deletePublication(this)" type="button" class="btn btn-danger pull-right remove-post"><span class="glyphicon glyphicon-remove"></span><span class="hidden-xs"> Delete</span></button>
+            </div>
+        </div>
+    </li>
+
+</body>
+</html>
